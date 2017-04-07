@@ -67,11 +67,9 @@ export default (styles) => ({
     react: (node, output, parentState) => {
       const state = {...parentState}
       state.withinText = true
-      const stylesToApply = [styles.heading, styles['heading' + node.level]]
-      state.stylesToApply = stylesToApply
       return createElement(Text, {
         key: state.key,
-        style: stylesToApply
+        style: [styles.heading, styles['heading' + node.level]]
       }, output(node.content, state))
     }
   },
@@ -191,7 +189,6 @@ export default (styles) => ({
         i != words.length - 1 ? word = word + ' ' : null
         const textStyles = [styles.text]
         !state.withinText ? textStyles.push(styles.plainText) : null
-        state.stylesToApply ? textStyles.push(state.stylesToApply) : null
         return createElement(Text, {
           style: textStyles
         }, word)
