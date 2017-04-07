@@ -69,11 +69,10 @@ export default (styles) => ({
       state.withinText = true
       const stylesToApply = [styles.heading, styles['heading' + node.level]]
       state.stylesToApply = stylesToApply
-      return (
-        <View style={[styles.viewHeading, styles['viewHeading' + node.level]}>
-          <Text key={state.key} style={[styles.heading, styles['heading' + node.level]}>output(node.content, state)</Text>
-        </View>
-      )
+      return createElement(Text, {
+        key: state.key,
+        style: stylesToApply
+      }, output(node.content, state))
     }
   },
   hr: {
