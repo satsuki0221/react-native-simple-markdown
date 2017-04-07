@@ -66,6 +66,7 @@ export default (styles) => ({
   heading: {
     react: (node, output, parentState) => {
       const state = {...parentState}
+      state.withinText = false
       return createElement(Text, {
         key: state.key,
         style: [styles.heading, styles['heading' + node.level]]
